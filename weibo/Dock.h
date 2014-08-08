@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "DockItem.h"
 
-#define kDockHeight 44
-
 @interface Dock : UIView
 
 @property(nonatomic, strong) void (^clickedBlock)(int index);

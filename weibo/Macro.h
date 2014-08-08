@@ -11,7 +11,8 @@
 
 
 #define kLastSoftVersion @"kCFBundleVersionKey"
+#define kStatusBarHeight 20
 
-
+#define kDockHeight 44
 
 #endif

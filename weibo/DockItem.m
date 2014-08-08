@@ -39,6 +39,12 @@
     return CGRectMake(0, y, contentRect.size.width, height);
 }
 
+#pragma mark - 覆盖父类默认的行为
+- (void)setHighlighted:(BOOL)highlighted
+{
+    // 覆盖父类高亮时做的一些操作
+}
+
 + (instancetype)DockItemWithText:(NSString *)text Icon:(NSString *)iconName
 {
     DockItem * item = [DockItem buttonWithType:UIButtonTypeCustom];
