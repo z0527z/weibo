@@ -12,7 +12,10 @@
 #import "NSString+append.h"
 #import "UIBarButtonItem+customBtn.h"
 #import "UIButton+custom.h"
+#import "UIImage+resizeImage.h"
+
 #import "ArrayDataSource.h"
+
 
 @interface DQLCommonMethods : NSObject
 

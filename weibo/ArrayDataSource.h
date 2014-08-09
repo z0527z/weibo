@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ArrayDataSource : NSObject <UITableViewDataSource>
-- (id)initWithItems:(NSArray *)items;
+@interface ArrayDataSource : NSObject <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+- (id)initWithTable:(UITableView *)tableView Items:(NSArray *)items;
 @end

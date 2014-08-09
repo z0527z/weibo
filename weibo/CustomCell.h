@@ -10,4 +10,5 @@
 
 @interface CustomCell : UITableViewCell
 
+- (void)configCellAtIndexPath:(NSIndexPath *)indexPath WithArray:(NSArray *)dataArray;
 @end

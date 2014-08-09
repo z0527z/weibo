@@ -8,17 +8,65 @@
 
 #import "CustomCell.h"
 
+@interface CustomCell ()
+@property(nonatomic, strong) UIView * vContainerView;
+@property(nonatomic, assign) BOOL top;
+@property(nonatomic, assign) BOOL bottom;
+@end
+
 @implementation CustomCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.textLabel.text = @"111";
         
     }
     
     return self;
+}
+
+#pragma mark - 调整cell的宽度
+- (void)setFrame:(CGRect)frame
+{
+    frame.origin.x += 10;
+    frame.size.width -= 2 * 10;
+    [super setFrame:frame];
+}
+
+#pragma mark - configCell
+- (void)configCellAtIndexPath:(NSIndexPath *)indexPath WithArray:(NSArray *)dataArray
+{
+    NSString * cellBgName = nil;
+    NSArray * sectionArray = (NSArray *)dataArray[indexPath.section];
+    if (sectionArray.count == 1) {
+        cellBgName = @"common_card_background.png";
+    }
+    else if (indexPath.row == 0){
+        cellBgName = @"common_card_top_background.png";
+    }
+    else if (indexPath.row == sectionArray.count - 1)
+    {
+        cellBgName = @"common_card_bottom_background.png";
+    }
+    else{
+        cellBgName = @"common_card_middle_background.png";
+    }
+    
+    // IOS7以上直接用图片来定制cell背景的正常状态，选中状态采用画线解决（定制cell）
+    self.backgroundView = [[UIImageView alloc]initWithImage:[UIImage resizeImageWithImg:cellBgName]];
+    self.textLabel.text = dataArray[indexPath.section][indexPath.row][@"name"];
+    self.textLabel.backgroundColor = [UIColor clearColor];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    // 修改cell中内容距左边的宽度
+    //    cell.indentationWidth = 5;
+    //    cell.indentationLevel = 2;
+}
+
+- (void)prepareForReuse
+{
+    
 }
 
 - (void)awakeFromNib
@@ -30,7 +78,6 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

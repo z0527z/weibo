@@ -79,6 +79,7 @@
 		221BD0D8198F8C5A0004350E /* tabbar_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 221BD09D198F8C5A0004350E /* tabbar_slider@2x.png */; };
 		221BD0DB198F8CE80004350E /* UIImage+newFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 221BD0DA198F8CE80004350E /* UIImage+newFeature.m */; };
 		221BD0DE198F8ED00004350E /* DQLCommonMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 221BD0DD198F8ED00004350E /* DQLCommonMethods.m */; };
+		228FA5561995A1CB00AFED25 /* UIImage+resizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FA5551995A1CB00AFED25 /* UIImage+resizeImage.m */; };
 		22D0B6591992098E000742F8 /* Dock.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B6581992098E000742F8 /* Dock.m */; };
 		22D0B65C19920A40000742F8 /* DockItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65B19920A40000742F8 /* DockItem.m */; };
 		22D0B65F199211D8000742F8 /* NSString+append.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65E199211D8000742F8 /* NSString+append.m */; };
@@ -229,6 +230,8 @@
 		221BD0DA198F8CE80004350E /* UIImage+newFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+newFeature.m"; sourceTree = "<group>"; };
 		221BD0DC198F8ED00004350E /* DQLCommonMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DQLCommonMethods.h; sourceTree = "<group>"; };
 		221BD0DD198F8ED00004350E /* DQLCommonMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DQLCommonMethods.m; sourceTree = "<group>"; };
+		228FA5541995A1CB00AFED25 /* UIImage+resizeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeImage.h"; sourceTree = "<group>"; };
+		228FA5551995A1CB00AFED25 /* UIImage+resizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeImage.m"; sourceTree = "<group>"; };
 		22D0B6571992098E000742F8 /* Dock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dock.h; sourceTree = "<group>"; };
 		22D0B6581992098E000742F8 /* Dock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dock.m; sourceTree = "<group>"; };
 		22D0B65A19920A40000742F8 /* DockItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockItem.h; sourceTree = "<group>"; };
@@ -497,6 +500,8 @@
 				22F216851994D53500D235B4 /* UIBarButtonItem+customBtn.m */,
 				22F216871994DB5700D235B4 /* UIButton+custom.h */,
 				22F216881994DB5700D235B4 /* UIButton+custom.m */,
+				228FA5541995A1CB00AFED25 /* UIImage+resizeImage.h */,
+				228FA5551995A1CB00AFED25 /* UIImage+resizeImage.m */,
 			);
 			name = "分类";
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 				221BD0DB198F8CE80004350E /* UIImage+newFeature.m in Sources */,
 				221BD05A198F85C50004350E /* NewFeatureViewController.m in Sources */,
 				22F2168C1994FEAF00D235B4 /* ArrayDataSource.m in Sources */,
+				228FA5561995A1CB00AFED25 /* UIImage+resizeImage.m in Sources */,
 				22F2167A1994BE0300D235B4 /* DiscoverViewController.m in Sources */,
 				22F216891994DB5700D235B4 /* UIButton+custom.m in Sources */,
 				22F2167D1994BE1900D235B4 /* MoreViewController.m in Sources */,

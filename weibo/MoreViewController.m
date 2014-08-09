@@ -20,7 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -41,23 +41,20 @@
     NSArray * array = [NSDictionary dictionaryWithContentsOfFile:path][@"zh_CN"];
     
     // 添加 UITableView
-    NSLog(@"%@", NSStringFromCGRect(self.view.bounds));
+    //NSLog(@"%@", NSStringFromCGRect(self.view.bounds));
     CGRect rect = (CGRect){{0, 0}, {self.view.bounds.size.width ,self.view.bounds.size.height - kDockHeight}};
     
     // UITableView group样式时 HeaderView 会默认显示出来，plain 样式时则默认不会显示出来
     UITableView * tableView = [[UITableView alloc]initWithFrame:rect style:UITableViewStyleGrouped];
     
     // 必须使用成员变量保存，否则会挂掉
-    _tableViewDataSource = [[ArrayDataSource alloc]initWithItems:array];
+    _tableViewDataSource = [[ArrayDataSource alloc]initWithTable:tableView Items:array];
 
-    tableView.delegate = self;
+    tableView.delegate = _tableViewDataSource;
     tableView.dataSource = _tableViewDataSource;
+    
     [self.view addSubview:tableView];
     
-    // 设置 tableView 的 header 和 footer
-    tableView.sectionHeaderHeight = 5;
-    tableView.sectionFooterHeight = 0;
-
 }
 
 
@@ -73,7 +70,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
     
 }
 

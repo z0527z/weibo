@@ -30,17 +30,16 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [button setTitle:title forState:UIControlStateHighlighted];
     
     // 设置拉伸后的普通状态下的图片
-    UIImage * originalNormalImg = [UIImage imageNamed:bgName];
-    CGSize size = originalNormalImg.size;
-    UIImage * resizedNormalImg = [originalNormalImg resizableImageWithCapInsets:UIEdgeInsetsMake(size.height * 0.5, size.width * 0.5, size.height * 0.5, size.width * 0.5)];
+    UIImage * resizedNormalImg = [UIImage resizeImageWithImg:bgName];
     [button setBackgroundImage:resizedNormalImg forState:UIControlStateNormal];
     
-    // 设置拉伸后的高亮状态下的图片（默认高亮图片和普通图片大小一致）
+    // 设置拉伸后的高亮状态下的图片
     NSString * highlightedImgName = [bgName appendStringWithString:@"_highlighted"];
-    UIImage * originalHightedImg = [UIImage imageNamed:highlightedImgName];
-    UIImage * resizedHightedImg = [originalHightedImg resizableImageWithCapInsets:UIEdgeInsetsMake(size.height * 0.5, size.width * 0.5, size.height * 0.5, size.width * 0.5)];
+    UIImage * resizedHightedImg = [UIImage resizeImageWithImg:highlightedImgName];
     
     [button setBackgroundImage: resizedHightedImg forState:UIControlStateHighlighted];
     [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
