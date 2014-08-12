@@ -15,7 +15,7 @@
 #import "UIImage+resizeImage.h"
 
 #import "ArrayDataSource.h"
-
+#import "MBProgressHUD.h"
 
 @interface DQLCommonMethods : NSObject
 

@@ -18,5 +18,6 @@
 
 - (void)selectDockItemAtIndex:(int)index;
 
+
 - (void)addItemsWithArray:(NSArray *)array;
 @end

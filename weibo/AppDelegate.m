@@ -9,9 +9,9 @@
 #import "AppDelegate.h"
 #import "NewFeatureViewController.h"
 #import "MainViewController.h"
+#import "OauthViewController.h"
 
 @implementation AppDelegate
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -25,8 +25,10 @@
     if ([currentVersion isEqualToString:lastVersion]) {
         // 当前版本无更新
         
-        MainViewController * mainVC = [[MainViewController alloc]init];
-        rootVC = mainVC;
+//        MainViewController * mainVC = [[MainViewController alloc]init];
+//        rootVC = mainVC;
+        OauthViewController * oauthVC = [[OauthViewController alloc]init];
+        rootVC = oauthVC;
     }
     else{
         // 更新保存的版本号

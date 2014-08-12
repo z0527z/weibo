@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "SendWeiboViewController.h"
 
 @interface HomeViewController ()
 
@@ -30,16 +31,19 @@
     self.title = @"首页";
     
     CGSize size = CGSizeMake(50, 30);
-    UIBarButtonItem * leftBarItem = [UIBarButtonItem barButtonWithNormalImage:@"navigationbar_compose.png" size:size target:self action:@selector(writeWeibo)];
+    UIBarButtonItem * leftBarItem = [UIBarButtonItem barButtonWithNormalImage:@"navigationbar_compose.png" size:size target:self action:@selector(sendWeibo)];
     self.navigationItem.leftBarButtonItem = leftBarItem;
     
     UIBarButtonItem * rightBarItem = [UIBarButtonItem barButtonWithNormalImage:@"navigationbar_pop.png" size:size target:self action:@selector(popUpMenu)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
 }
 
-- (void)writeWeibo
+- (void)sendWeibo
 {
     NSLog(@"发微博");
+    SendWeiboViewController * sendWeibo = [[SendWeiboViewController alloc]init];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:sendWeibo];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)popUpMenu

@@ -30,8 +30,8 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [button setTitle:title forState:UIControlStateHighlighted];
+//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+//    [button setTitle:title forState:UIControlStateHighlighted];
     
     // 设置拉伸后的普通状态下的图片
     UIImage * resizedNormalImg = [UIImage resizeImageWithImg:bgName];
@@ -40,8 +40,9 @@
     // 设置拉伸后的高亮状态下的图片
     NSString * highlightedImgName = [bgName appendStringWithString:@"_highlighted"];
     UIImage * resizedHightedImg = [UIImage resizeImageWithImg:highlightedImgName];
-    
     [button setBackgroundImage: resizedHightedImg forState:UIControlStateHighlighted];
+    
+    
     [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     
     return button;
