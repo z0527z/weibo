@@ -87,6 +87,8 @@
 		22D0B65C19920A40000742F8 /* DockItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65B19920A40000742F8 /* DockItem.m */; };
 		22D0B65F199211D8000742F8 /* NSString+append.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65E199211D8000742F8 /* NSString+append.m */; };
 		22D5C0AE1998E35500E5A529 /* OauthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5C0AD1998E35500E5A529 /* OauthViewController.m */; };
+		22D706B0199A420B009736C1 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D706AE199A420B009736C1 /* WeiboSDK.bundle */; };
+		22D706B3199A5202009736C1 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D706B2199A5202009736C1 /* libWeiboSDK.a */; };
 		22F216411994BB4400D235B4 /* common_button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F216141994BB4400D235B4 /* common_button_red.png */; };
 		22F216421994BB4400D235B4 /* common_button_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F216151994BB4400D235B4 /* common_button_red@2x.png */; };
 		22F216431994BB4400D235B4 /* common_button_red_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 22F216161994BB4400D235B4 /* common_button_red_highlighted.png */; };
@@ -249,7 +251,9 @@
 		22D0B65E199211D8000742F8 /* NSString+append.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+append.m"; sourceTree = "<group>"; };
 		22D5C0AC1998E35500E5A529 /* OauthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthViewController.h; sourceTree = "<group>"; };
 		22D5C0AD1998E35500E5A529 /* OauthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthViewController.m; sourceTree = "<group>"; };
-		22D5C0B71998FDB800E5A529 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		22D706AE199A420B009736C1 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WeiboSDK.bundle; path = "../../../../../Volumes/DATA/Download/weibo_ios_sdk-master/WeiboSDKDemo/libWeiboSDK/WeiboSDK.bundle"; sourceTree = "<group>"; };
+		22D706B1199A421D009736C1 /* WeiboSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		22D706B2199A5202009736C1 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		22F216141994BB4400D235B4 /* common_button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_button_red.png; sourceTree = "<group>"; };
 		22F216151994BB4400D235B4 /* common_button_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_button_red@2x.png"; sourceTree = "<group>"; };
 		22F216161994BB4400D235B4 /* common_button_red_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_button_red_highlighted.png; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D706B3199A5202009736C1 /* libWeiboSDK.a in Frameworks */,
 				221BD02C198F856C0004350E /* CoreGraphics.framework in Frameworks */,
 				221BD02E198F856C0004350E /* UIKit.framework in Frameworks */,
 				221BD02A198F856C0004350E /* Foundation.framework in Frameworks */,
@@ -363,7 +368,6 @@
 		221BD028198F856C0004350E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22D5C0B71998FDB800E5A529 /* SystemConfiguration.framework */,
 				221BD029198F856C0004350E /* Foundation.framework */,
 				221BD02B198F856C0004350E /* CoreGraphics.framework */,
 				221BD02D198F856C0004350E /* UIKit.framework */,
@@ -581,6 +585,9 @@
 		22D5C0A61998C85200E5A529 /* 库 */ = {
 			isa = PBXGroup;
 			children = (
+				22D706B2199A5202009736C1 /* libWeiboSDK.a */,
+				22D706B1199A421D009736C1 /* WeiboSDK.h */,
+				22D706AE199A420B009736C1 /* WeiboSDK.bundle */,
 			);
 			name = "库";
 			sourceTree = "<group>";
@@ -759,6 +766,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 221BD01D198F856C0004350E;
 			productRefGroup = 221BD027198F856C0004350E /* Products */;
@@ -846,6 +854,7 @@
 				221BD0A4198F8C5A0004350E /* new_feature_1-568h@2x.png in Resources */,
 				22F2165C1994BB4400D235B4 /* navigationbar_background@2x.png in Resources */,
 				221BD0D0198F8C5A0004350E /* tabbar_more@2x.png in Resources */,
+				22D706B0199A420B009736C1 /* WeiboSDK.bundle in Resources */,
 				221BD0B2198F8C5A0004350E /* new_feature_background@2x.png in Resources */,
 				22F2164C1994BB4400D235B4 /* common_card_bottom_background_highlighted@2x.png in Resources */,
 				22F216681994BB4400D235B4 /* navigationbar_compose_highlighted@2x.png in Resources */,
@@ -1061,10 +1070,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "weibo/weibo-Prefix.pch";
 				INFOPLIST_FILE = "weibo/weibo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_DEPENDENCY_INFO_FILE = "";
+				LD_MAP_FILE_PATH = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/weibo",
@@ -1080,10 +1092,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "weibo/weibo-Prefix.pch";
 				INFOPLIST_FILE = "weibo/weibo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_DEPENDENCY_INFO_FILE = "";
+				LD_MAP_FILE_PATH = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/weibo",

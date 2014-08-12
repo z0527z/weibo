@@ -18,13 +18,15 @@
 #define kDocumentPath NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0]
 
 // 微博相关
-#define kAppKey @"2783540646"
-#define kAppSecret @"ca07a4fda7bedb05407e04394c2d7aa2"
-#define kRedirectURI @"http://"
+#define kWeiboAppKey @"3623286338"
+#define kWeiboAppSecret @"2efb43d63afc33b7a28fe8f965d82d5a"
+#define kWeiboRedirectURI @"http://"
 
-// Oauth2.0授权
-#define kOauthURL [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@&display=mobile&response_type=token", kAppKey, kRedirectURI]
 
-#define kWeiboBaseURL @"https://api.weibo.com/oauth2/"
+
+#define kWeiboBaseURL @"https://api.weibo.com/2/"
+
+#define kUserInfo @"users/show.json"
+
 
 #endif

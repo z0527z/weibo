@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OauthViewController : UIViewController
-
+@property(nonatomic, strong) void (^accessOK)();
 @end

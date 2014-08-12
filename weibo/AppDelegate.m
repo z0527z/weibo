@@ -14,6 +14,7 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
@@ -25,10 +26,18 @@
     if ([currentVersion isEqualToString:lastVersion]) {
         // 当前版本无更新
         
-//        MainViewController * mainVC = [[MainViewController alloc]init];
-//        rootVC = mainVC;
-        OauthViewController * oauthVC = [[OauthViewController alloc]init];
-        rootVC = oauthVC;
+        self.oauthVC = [[OauthViewController alloc]init];
+        
+        typeof(self) __weak weak_self = self;
+        _oauthVC.accessOK = ^(){
+            if (weak_self) {
+                typeof(weak_self) __strong strong_self = weak_self;
+                MainViewController * mainVC = [[MainViewController alloc]init];
+                strong_self.window.rootViewController = mainVC;
+            }
+            NSLog(@"convert to MainViewController");
+        };
+        rootVC = _oauthVC;
     }
     else{
         // 更新保存的版本号
@@ -70,6 +79,13 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     
+}
+
+#pragma mark - 微博相关
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    return [WeiboSDK handleOpenURL:url delegate:_oauthVC];
 }
 
 @end

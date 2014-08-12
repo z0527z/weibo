@@ -16,6 +16,7 @@
 
 #import "ArrayDataSource.h"
 #import "MBProgressHUD.h"
+#import "AFNetworking.h"
 
 @interface DQLCommonMethods : NSObject
 

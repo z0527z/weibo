@@ -8,11 +8,10 @@
 
 #import "OauthViewController.h"
 #import "Account.h"
+#import "WeiboSDK.h"
 
-@interface OauthViewController ()<UIWebViewDelegate>
-{
-    UIWebView * _webView;
-}
+@interface OauthViewController ()<WeiboSDKDelegate>
+
 @end
 
 @implementation OauthViewController
@@ -21,17 +20,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [WeiboSDK enableDebugMode:YES];
+        [WeiboSDK registerApp:kWeiboAppKey];
     }
     return self;
-}
-
-- (void)loadView
-{
-    CGRect rect = [DQLCommonMethods screenBounds];
-    _webView = [[UIWebView alloc]initWithFrame:rect];
-    _webView.delegate = self;
-    self.view = _webView;
 }
 
 - (void)viewDidLoad
@@ -39,67 +31,26 @@
     [super viewDidLoad];
     
     [UIApplication sharedApplication].statusBarHidden = NO;
-    
-    NSURL * URL = [NSURL URLWithString:kOauthURL];
-    NSURLRequest * request = [NSURLRequest requestWithURL:URL];
-    [_webView loadRequest:request];
-    
+
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)viewDidAppear:(BOOL)animated
 {
-    //NSLog(@"%@", request.URL);
-    NSString * requestStr = [NSString stringWithFormat:@"%@", request.URL];
-    
-    // 截取出 access_token
-    NSRange range = [requestStr rangeOfString:@"access_token=[^&]{1,}" options:NSRegularExpressionSearch];
-    if (range.location != NSNotFound)
-    {
-        Account * account = [[Account alloc]init];
-        
-        NSString * str = [requestStr substringWithRange:range];
-        NSArray * array = [str componentsSeparatedByString:@"="];
-        account.accessToken = array[1];
-        
-        // 截取有效期 expires_in=67282
-        range = [requestStr rangeOfString:@"expires_in=[^&]+" options:NSRegularExpressionSearch];
-        if (range.location != NSNotFound) {
-            NSString * str = [requestStr substringWithRange:range];
-            NSArray * array = [str componentsSeparatedByString:@"="];
-            account.expiresIn = array[1];
-        }
-        
-        // 截取用户uid uid=3913129041
-        range = [requestStr rangeOfString:@"uid=[^&]+" options:NSRegularExpressionSearch];
-        if (range.location != NSNotFound) {
-            NSString * str = [requestStr substringWithRange:range];
-            NSArray * array = [str componentsSeparatedByString:@"="];
-            account.uid = array[1];
-        }
-        
-        // 获取用户昵称
-        
-        
-        return NO;
-    }
-    
-    return YES;
+    // 只能放在此处，否则会无法点击
+    [self weiboPressed];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
+- (void)weiboPressed
 {
-    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:webView animated:YES];
-    hud.labelText = @"加载中...";
-    
-    [UIApplication sharedApplication].NetworkActivityIndicatorVisible = YES;
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = kWeiboRedirectURI;
+    request.scope = @"all";
+//  request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+//                         @"Other_Info_1": [NSNumber numberWithInt:123],
+//                         @"Other_Info_2": @[@"obj1", @"obj2"],
+//                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
 }
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [MBProgressHUD hideHUDForView:webView animated:YES];
-    [UIApplication sharedApplication].NetworkActivityIndicatorVisible = NO;
-}
-
 
 
 
@@ -109,15 +60,57 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([request isKindOfClass:WBProvideMessageForWeiboRequest.class])
+    {
+        NSLog(@"---->");
+    }
 }
-*/
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
+    {
+        NSString *title = @"发送结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",(int)response.statusCode, response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if ([response isKindOfClass:WBAuthorizeResponse.class])
+    {
+        NSString *title = @"认证结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",(int)response.statusCode,[(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        // 保存账号信息
+        Account * account = [[Account alloc]init];
+        account.accessToken = [(WBAuthorizeResponse *)response accessToken];
+        account.uid = [(WBAuthorizeResponse *)response userID];
+        account.expiresIn = [NSString stringWithFormat:@"%@",[(WBAuthorizeResponse *)response expirationDate]];
+        //[alert show];
+        
+        // 请求账号信息
+        
+        self.accessOK();
+    }
+}
+
+- (void)requestUserInfo
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://example.com/resources.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
 @end
