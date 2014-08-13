@@ -20,13 +20,13 @@
 // 微博相关
 #define kWeiboAppKey @"3623286338"
 #define kWeiboAppSecret @"2efb43d63afc33b7a28fe8f965d82d5a"
-#define kWeiboRedirectURI @"http://"
+#define kWeiboRedirectURI @"https://api.weibo.com/oauth2/default.html"
 
 
 
 #define kWeiboBaseURL @"https://api.weibo.com/2/"
 
 #define kUserInfo @"users/show.json"
-
+#define kStatusInfo @"statuses/home_timeline.json"
 
 #endif

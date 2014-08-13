@@ -17,7 +17,7 @@
 //        NSString * extention = [name pathExtension];
 //        str = [imageName stringByAppendingString:@"-568h@2x"];
 //        str = [str stringByAppendingPathExtension:extention];
-        [name appendStringWithString:@"-568h@2x"];
+        str = [name appendStringWithString:@"-568h@2x"];
     }
     else{
         str = name;

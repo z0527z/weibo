@@ -36,7 +36,6 @@
     self.view.userInteractionEnabled = YES;
     
     CGRect rect = [DQLCommonMethods screenBounds];
-    NSLog(@"new-->bounds:%@", NSStringFromCGRect(self.view.bounds));
     UIScrollView * scrollView = [[UIScrollView alloc]initWithFrame:rect];
     scrollView.contentSize = CGSizeMake(kCount * rect.size.width, 0);
     scrollView.pagingEnabled = YES;
@@ -63,10 +62,11 @@
 #pragma - 添加图片
 - (void)addImageWithIndex:(int)index inView:(UIView *)view
 {
+    CGRect rect = [DQLCommonMethods screenBounds];
     NSString * str = [NSString stringWithFormat:@"new_feature_%d.png", index + 1];
     UIImage * image = [UIImage fullScreenImageWithImageName:str];
     UIImageView * imageView = [[UIImageView alloc]initWithImage:image];
-    imageView.frame = (CGRect){{index * image.size.width, 0}, image.size};
+    imageView.frame = (CGRect){{index * rect.size.width, 0}, rect.size};
     [view addSubview:imageView];
     
     if (index == kCount - 1) {
