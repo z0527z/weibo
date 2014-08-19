@@ -83,10 +83,10 @@
     
     // 避免 retain 环, 标准做法
     // 1. __block MainViewController * tmpVC = self;
-    typeof(self) __weak weak_self = self;
+    __weak typeof(self) weak_self = self;
      _dock.clickedBlock = ^(int index){
          if (weak_self) {
-             typeof(weak_self) __strong strong_self = weak_self;
+             __strong typeof(weak_self) strong_self = weak_self;
              [strong_self selectControllerAtIndex:index];
          }
          else{

@@ -9,7 +9,7 @@
 #ifndef weibo_Macro_h
 #define weibo_Macro_h
 
-
+// 版本更新相关
 #define kLastSoftVersion @"kCFBundleVersionKey"
 #define kStatusBarHeight 20
 
@@ -28,5 +28,40 @@
 
 #define kUserInfo @"users/show.json"
 #define kStatusInfo @"statuses/home_timeline.json"
+
+
+// 微博更新数据相关
+#define kNavigationBarHeight    44
+
+/*
+微博cell相关
+ */
+
+// 间距
+#define kCellPadding    10
+// 头像
+#define kIconWidth      50
+#define kIconHeight     kIconWidth
+// 昵称
+#define kScreenNameFont [UIFont systemFontOfSize:17.0]
+
+// 会员
+#define kMbIconWidth    14
+#define kMbIconHeight   kMbIconWidth
+
+// 创建时间
+#define kCreateAtFont   [UIFont systemFontOfSize:14.0]
+
+// 来源
+#define kSourceFont     [UIFont systemFontOfSize:14.0]
+
+// 正文
+#define kTextFont       [UIFont systemFontOfSize:15.0]
+
+// 被转微博的昵称
+#define kRetweetedScreenNameFont    [UIFont systemFontOfSize:14.0]
+
+// 被转微博正文
+#define kRetweetedTextFont          [UIFont systemFontOfSize:12.0]
 
 #endif

@@ -7,10 +7,14 @@
 //
 
 #import "PlainTableDataSource.h"
+#import "StatusCell.h"
+#import "StatusCellFrame.h"
+#import "Status.h"
 
 @interface PlainTableDataSource ()
 {
-    NSArray * _dataArray;
+    NSMutableArray * _status;
+    NSMutableArray * _cellFrames;
 }
 @end
 
@@ -20,7 +24,14 @@
 - (id)initWithTable:(UITableView *)tableView Items:(NSArray *)items
 {
     if (self = [super init]) {
-        _dataArray = [NSArray arrayWithArray:items];
+        
+        _status = [NSMutableArray array];
+        _cellFrames = [NSMutableArray array];
+        
+        for (int i = 0; i < items.count; i ++) {
+            Status * status = [Status objectWithKeyValues:items[i]];
+            [_status addObject:status];
+        }
         
 
         
@@ -32,20 +43,18 @@
 #pragma mark - TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"number:%d", _dataArray.count);
-    return _dataArray.count;
+    return _status.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell");
     static NSString * identifier = @"plain_cell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    StatusCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = _dataArray[indexPath.row][@"text"];
+    cell.statusCellFrame = _cellFrames[indexPath.row];
     
     return cell;
 }
@@ -53,6 +62,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StatusCellFrame * cellFrame = [[StatusCellFrame alloc] init];
+
+    cellFrame.status = _status[indexPath.row];
+    
+    if (![_cellFrames containsObject:cellFrame]) {
+        [_cellFrames addObject:cellFrame];
+    }
+    
+    return cellFrame.cellHeight;
 }
 
 

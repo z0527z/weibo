@@ -53,11 +53,14 @@
         cellBgName = @"common_card_middle_background.png";
     }
     
-    // IOS7以上直接用图片来定制cell背景的正常状态，选中状态采用画线解决（定制cell）
+    // IOS7以上直接用图片来定制cell背景和选中背景, 亦可以采用画线解决（定制cell）
+    NSString * selectedBgName = [cellBgName appendStringWithString:@"_highlighted"];
     self.backgroundView = [[UIImageView alloc]initWithImage:[UIImage resizeImageWithImg:cellBgName]];
+    self.selectedBackgroundView = [[UIImageView alloc]initWithImage:[UIImage resizeImageWithImg:selectedBgName]];
     self.textLabel.text = dataArray[indexPath.section][indexPath.row][@"name"];
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.backgroundColor = [UIColor clearColor];
     
     // 修改cell中内容距左边的宽度
     //    cell.indentationWidth = 5;

@@ -111,6 +111,7 @@
 }
 
 #pragma mark - tableView Delegate 定制cell样式
+/** 画线定制cell
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(tintColor)])
@@ -198,5 +199,5 @@
     }
         
 }
-
+*/
 @end
