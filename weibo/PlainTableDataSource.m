@@ -28,8 +28,16 @@
         _status = [NSMutableArray array];
         _cellFrames = [NSMutableArray array];
         
+//        NSLog(@"ites-->%@", items);
+        
+//        for (int i = 0; i < items.count; i ++) {
+//            Status * status = [Status objectWithKeyValues:items[i]];
+//            [_status addObject:status];
+//        }
+        // 把数据转成模型
+        
         for (int i = 0; i < items.count; i ++) {
-            Status * status = [Status objectWithKeyValues:items[i]];
+            Status * status = [[Status alloc]initWithDictionary:items[i]];
             [_status addObject:status];
         }
         
@@ -55,6 +63,7 @@
     }
     
     cell.statusCellFrame = _cellFrames[indexPath.row];
+    
     
     return cell;
 }

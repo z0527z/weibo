@@ -74,7 +74,7 @@
 //        }
         int count = status.picUrls.count;
         CGFloat width = (count % 3) * placeHolderImage.size.width;
-        CGFloat height = (count / 3) * placeHolderImage.size.height;
+        CGFloat height = ceil( (count+1) / 3) * placeHolderImage.size.height;
         _pic = CGRectMake(picX, picY, width, height);
     }
     

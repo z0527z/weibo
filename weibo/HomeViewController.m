@@ -96,7 +96,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString * urlStr = [NSString stringWithFormat:@"%@%@?access_token=%@", kWeiboBaseURL, kStatusInfo, currentAccount.accessToken];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         
         _dataSource = [[PlainTableDataSource alloc]initWithTable:_tableView Items:responseObject[@"statuses"]];
         _tableView.dataSource = _dataSource;
@@ -115,16 +115,37 @@
     }];
 }
 
+#define keypath2(OBJ, PATH) \
+(((void)(NO && ((void)OBJ.PATH, NO)), # PATH))
+
+#pragma mark - for Test
+- (void)macroToString
+{
+    UILabel * label = [[UILabel alloc] init];
+    
+    NSString * str = [NSString stringWithCString:keypath2(label, text) encoding:NSUTF8StringEncoding];
+    NSLog(@"keypath2--->%@", str);
+}
+
 #pragma mark - 显示更新的微博数量
 - (void)showUpdateStatusCount
 {
+    
     // 显示更新微博数量
     CGRect screenRect = [DQLCommonMethods screenBounds];
-    UILabel * label = [[UILabel alloc]init];
-    label.frame = (CGRect){CGPointZero, {screenRect.size.width, kNavigationBarHeight}};
-    label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor orangeColor];
-    label.text = @"更新了";
+    /*
+     *   小括号内联复合表达式, 源自gcc对c的扩展，如今被clang继承
+     *   有点像block和内联函数的结合体，它最大的意义在于将代码整理分块，将同一个逻辑层级的代码包在一起；同时对于一个无需复用小段逻辑，也免去了重量级的调用函数
+     *   PS: 返回值和代码块结束点必须在结尾
+     */
+    UILabel * label = ({
+        UILabel * label = [[UILabel alloc]init];
+        label.frame = (CGRect){CGPointZero, {screenRect.size.width, kNavigationBarHeight}};
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor orangeColor];
+        label.text = @"更新了";
+        label;
+    });
     
     [self.navigationController.view insertSubview:label belowSubview:self.navigationController.navigationBar];
     

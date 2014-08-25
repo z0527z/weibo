@@ -77,6 +77,8 @@
 {
     // 用户头像
     _icon = [[UIImageView alloc] init];
+    _icon.layer.cornerRadius = kIconWidth * 0.5;
+    _icon.layer.masksToBounds = YES;
     [self addSubview:_icon];
     
     // 用户昵称
@@ -89,6 +91,7 @@
     
     // 创建时间
     _time = [[UILabel alloc] init];
+    _time.font = [UIFont systemFontOfSize:12];
     [self addSubview:_time];
     
     // 微博来源
@@ -97,6 +100,7 @@
     
     // 微博正文
     _text = [[UILabel alloc] init];
+    _text.numberOfLines = 0;
     [self addSubview:_text];
     
     // 微博配图
@@ -138,8 +142,42 @@
     // 设置头像
     UIImage * userPlaceHolderImage = [UIImage imageNamed:@"avatar_default.png"];
     NSURL * url = [NSURL URLWithString:statusCellFrame.status.user.profileImageUrl];
+#warning 这里也必须设置frame, 这才真正设置到cell上
+    _icon.frame = statusCellFrame.icon;
     [_icon sd_setImageWithURL: url placeholderImage:userPlaceHolderImage];
     
+    // 设置昵称
+    NSLog(@"screenName:%@", statusCellFrame.status.user.screenName);
+    [_screenName setText:statusCellFrame.status.user.screenName];
+    _screenName.frame = statusCellFrame.screenName;
+    
+    // 会员头像
+    Status * status = statusCellFrame.status;
+    User * user = status.user;
+    _mbIcon.image = [UIImage imageNamed:@"common_icon_membership.png"];
+    if (user.mbType == MBTypeNone) {
+        _mbIcon.hidden = YES;
+        _screenName.textColor = kScreenNameColor;
+    }
+    else {
+        _mbIcon.hidden = NO;
+        _screenName.textColor = kMBScreenNameColor;
+    }
+
+    
+    // 创建时间
+    _time.frame = statusCellFrame.time;
+    _time.text = status.createAt;
+    // 微博来源
+    _source.frame = statusCellFrame.source;
+    _source.text = status.source;
+    
+    // 微博正文
+    _text.frame = statusCellFrame.text;
+    [_text setText:status.text];
+    
+    // 图片
+    _pic.frame = statusCellFrame.pic;
     
 }
 

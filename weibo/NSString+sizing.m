@@ -20,8 +20,7 @@
     
     CGSize newSize = [self boundingRectWithSize:size
                                              options:NSStringDrawingTruncatesLastVisibleLine |
-                                                     NSStringDrawingUsesLineFragmentOrigin |
-                                                     NSStringDrawingUsesFontLeading
+                                                     NSStringDrawingUsesLineFragmentOrigin
                                           attributes:attribute
                                              context:nil].size;
     

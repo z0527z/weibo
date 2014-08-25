@@ -44,6 +44,8 @@
 #define kIconHeight     kIconWidth
 // 昵称
 #define kScreenNameFont [UIFont systemFontOfSize:17.0]
+#define kScreenNameColor [UIColor blackColor]
+#define kMBScreenNameColor [UIColor colorWithRed:244 green:103 blue:8 alpha:1]
 
 // 会员
 #define kMbIconWidth    14

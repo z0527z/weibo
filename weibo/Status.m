@@ -16,7 +16,7 @@
     if (self = [super init]) {
         
         // 微博创建时间
-        self.createAt = dict[@"create_at"];
+        self.createAt = dict[@"created_at"];
         
         // 微博ID
         self.idNum = [dict[@"id"] longLongValue];
