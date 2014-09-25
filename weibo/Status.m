@@ -25,7 +25,12 @@
         self.text = dict[@"text"];
         
         // 微博来源
-        self.source = dict[@"source"];
+        //self.source = dict[@"source"];
+        NSAttributedString * attributedStr = nil;
+        if (__IPHONE_7_0) {
+            attributedStr = [[NSAttributedString alloc] initWithData:[dict[@"source"] dataUsingEncoding:NSUTF8StringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:nil error:nil];
+        }
+        self.source = attributedStr.string;
         
         // 微博作者
         id user = dict[@"user"];
@@ -50,8 +55,12 @@
         
         // 微博配图地址
         id picUrls = dict[@"pic_urls"];
-        if (picUrls) {
-            self.picUrls = picUrls;
+        if([picUrls isKindOfClass:[NSArray class]] && ((NSArray *)picUrls).count) {
+            NSArray * array = picUrls;
+            self.picUrls = [NSMutableArray array];
+            for (NSDictionary * dict in array) {
+                [self.picUrls addObject:dict[@"thumbnail_pic"]];
+            }
         }
         
     }

@@ -53,7 +53,7 @@
 @property(nonatomic, assign) int attitudesCount;
 
 // 微博配图地址
-@property(nonatomic, strong) NSArray * picUrls;
+@property(nonatomic, strong) NSMutableArray * picUrls;
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict;

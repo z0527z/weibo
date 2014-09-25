@@ -137,7 +137,6 @@
 		22D0B6591992098E000742F8 /* Dock.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B6581992098E000742F8 /* Dock.m */; };
 		22D0B65C19920A40000742F8 /* DockItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65B19920A40000742F8 /* DockItem.m */; };
 		22D0B65F199211D8000742F8 /* NSString+append.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65E199211D8000742F8 /* NSString+append.m */; };
-		22D4EBF319AA03DB00BB4E99 /* NSString+date.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D4EBF219AA03DB00BB4E99 /* NSString+date.m */; };
 		22D5C0AE1998E35500E5A529 /* OauthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D5C0AD1998E35500E5A529 /* OauthViewController.m */; };
 		22D706B0199A420B009736C1 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22D706AE199A420B009736C1 /* WeiboSDK.bundle */; };
 		22D706B3199A5202009736C1 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D706B2199A5202009736C1 /* libWeiboSDK.a */; };
@@ -380,8 +379,6 @@
 		22D0B65B19920A40000742F8 /* DockItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DockItem.m; sourceTree = "<group>"; };
 		22D0B65D199211D8000742F8 /* NSString+append.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+append.h"; sourceTree = "<group>"; };
 		22D0B65E199211D8000742F8 /* NSString+append.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+append.m"; sourceTree = "<group>"; };
-		22D4EBF119AA03DB00BB4E99 /* NSString+date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+date.h"; sourceTree = "<group>"; };
-		22D4EBF219AA03DB00BB4E99 /* NSString+date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+date.m"; sourceTree = "<group>"; };
 		22D5C0AC1998E35500E5A529 /* OauthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OauthViewController.h; sourceTree = "<group>"; };
 		22D5C0AD1998E35500E5A529 /* OauthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OauthViewController.m; sourceTree = "<group>"; };
 		22D706AE199A420B009736C1 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WeiboSDK.bundle; path = "../../../../../Volumes/DATA/Download/weibo_ios_sdk-master/WeiboSDKDemo/libWeiboSDK/WeiboSDK.bundle"; sourceTree = "<group>"; };
@@ -770,8 +767,6 @@
 				228FA5551995A1CB00AFED25 /* UIImage+resizeImage.m */,
 				221B25E819A34B95007B0E71 /* NSString+sizing.h */,
 				221B25E919A34B95007B0E71 /* NSString+sizing.m */,
-				22D4EBF119AA03DB00BB4E99 /* NSString+date.h */,
-				22D4EBF219AA03DB00BB4E99 /* NSString+date.m */,
 			);
 			name = "分类";
 			sourceTree = "<group>";
@@ -1255,7 +1250,6 @@
 				2254810119A2E9E300C8101B /* StatusCell.m in Sources */,
 				22D0B65C19920A40000742F8 /* DockItem.m in Sources */,
 				221BD05D198F85D50004350E /* MainViewController.m in Sources */,
-				22D4EBF319AA03DB00BB4E99 /* NSString+date.m in Sources */,
 				22D0B6591992098E000742F8 /* Dock.m in Sources */,
 				22F216771994BDED00D235B4 /* ProfileViewController.m in Sources */,
 				22D0B65F199211D8000742F8 /* NSString+append.m in Sources */,

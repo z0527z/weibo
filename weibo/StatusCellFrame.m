@@ -39,7 +39,7 @@
     // 创建时间
     CGFloat timeX = screenNameX;
     CGFloat timeY = CGRectGetMaxY(_screenName) + kCellPadding;
-    CGSize timeSize = [status.createAt sizeLabelWithFont:kCreateAtFont size:constrainedSize];
+    CGSize timeSize = [[status.createAt stringInterval] sizeLabelWithFont:kCreateAtFont size:constrainedSize];
     
     _time = (CGRect){{timeX, timeY}, timeSize};
     
@@ -53,14 +53,16 @@
     // 正文
     CGFloat textX = iconX;
     CGFloat textY = CGRectGetMaxY(_source) + kCellPadding;
-    CGSize textSize = [status.text sizeLabelWithFont:kTextFont size:constrainedSize];
+    // 支持得貌似不是很好，手动调整
+    CGSize adjustedContrainedSize = CGSizeMake(constrainedSize.width - kCellPadding, constrainedSize.height);
+    CGSize textSize = [status.text sizeLabelWithFont:kTextFont size:adjustedContrainedSize];
     
     _text = (CGRect){{textX, textY}, textSize};
     
     if (status.picUrls) {
         CGFloat picX = iconX;
         CGFloat picY = CGRectGetMaxY(_text) + kCellPadding;
-        UIImage * placeHolderImage = [UIImage imageNamed:@"timeline_image_placeholder.png"];
+        UIImage * placeHolderImage = [UIImage imageNamed:@"avatar_default.png"];
         
 //        for (int i = 0; i < status.picUrls.count; i ++) {
 //            UIImageView * imageView = [[UIImageView alloc]init];
@@ -72,10 +74,8 @@
 //            CGFloat Y = (i / 3) * placeHolderImage.size.height + picY;
 //            imageView.frame = (CGRect){{X, Y}, placeHolderImage.size};
 //        }
-        int count = status.picUrls.count;
-        CGFloat width = (count % 3) * placeHolderImage.size.width;
-        CGFloat height = ceil( (count+1) / 3) * placeHolderImage.size.height;
-        _pic = CGRectMake(picX, picY, width, height);
+
+        _pic = CGRectMake(picX, picY, placeHolderImage.size.width, placeHolderImage.size.height);
     }
     
     /*
@@ -86,7 +86,7 @@
         
         CGFloat retweetedX = iconX;
         CGFloat retweetedY = CGRectGetMaxY(_text) + kCellPadding;
-        CGFloat retweetedWidth = constrainedSize.width;
+        CGFloat retweetedWidth = retweetedContrainSize.width;
         
         // 转发微博的昵称
         CGFloat retweetedScreenNameX = kCellPadding;
@@ -99,7 +99,9 @@
         // 转发微博的正文
         CGFloat retweetedTextX = retweetedScreenNameX;
         CGFloat retweetedTextY = CGRectGetMaxY(_retweetedScreenName) + kCellPadding;
-        CGSize retweetedTextSize = [status.retweetedStatus.text sizeLabelWithFont:kRetweetedTextFont size:retweetedContrainSize];
+        // 支持得貌似不是很好，手动调整
+        CGSize adjustedRetweetedContrainSize = CGSizeMake(retweetedContrainSize.width - kCellPadding, retweetedContrainSize.height);
+        CGSize retweetedTextSize = [status.retweetedStatus.text sizeLabelWithFont:kRetweetedTextFont size:adjustedRetweetedContrainSize];
         
         _retweetedText = (CGRect){{retweetedTextX, retweetedTextY}, retweetedTextSize};
         
@@ -107,11 +109,10 @@
         if (status.retweetedStatus.picUrls) {
             CGFloat retweetedPicX = retweetedScreenNameX;
             CGFloat retweetedPicY = CGRectGetMaxY(_retweetedText) + kCellPadding;
-            UIImage * placeHolderImage = [UIImage imageNamed:@"timeline_image_placeholder.png"];
+            UIImage * placeHolderImage = [UIImage imageNamed:@"avatar_default.png"];
             
-            int count = status.retweetedStatus.picUrls.count;
-            CGFloat width = (count % 3) * placeHolderImage.size.width;
-            CGFloat height = (count / 3) * placeHolderImage.size.height;
+            CGFloat width = placeHolderImage.size.width;
+            CGFloat height = placeHolderImage.size.height;
             _retweetedPic = CGRectMake(retweetedPicX, retweetedPicY, width, height);
         }
         
@@ -119,6 +120,7 @@
         if (status.retweetedStatus.picUrls) {
             retweetedHeight = CGRectGetMaxY(_retweetedPic);
         }
+        retweetedHeight += 10;
         
         _retweet = CGRectMake(retweetedX, retweetedY, retweetedWidth, retweetedHeight);
         
@@ -131,6 +133,8 @@
     if (status.retweetedStatus) {
         _cellHeight = CGRectGetMaxY(_retweet);
     }
+    
+    _cellHeight += 10;
 }
 
 @end

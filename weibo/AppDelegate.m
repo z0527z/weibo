@@ -14,7 +14,7 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [WeiboSDK enableDebugMode:YES];
+    //[WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kWeiboAppKey];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -86,8 +86,7 @@
 #pragma mark - 微博相关
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    
-    return [WeiboSDK handleOpenURL:url delegate:_oauthVC];
+    return [WeiboSDK handleOpenURL:url delegate:(id<WeiboSDKDelegate>)_oauthVC];
 }
 
 @end
