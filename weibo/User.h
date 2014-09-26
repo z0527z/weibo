@@ -14,6 +14,15 @@ typedef enum {
     MBTypeYear // 年费
 } MBType;
 
+typedef enum
+{
+    VerifiedTypeNone = -1,
+    VerifiedTypePersonal = 0, // 个人认证
+    VerifiedTypeCompany = 2,
+    VerifiedTypeExpert = 220
+    
+}VerifiedType;
+
 @interface User : NSObject
 
 // 用户ID

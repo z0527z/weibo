@@ -38,7 +38,8 @@
 @property (nonatomic, assign, readonly) CGRect text;
 
 // 微博配图
-@property (nonatomic, assign, readonly) CGRect pic;
+@property (nonatomic, assign, readonly) CGRect imageBackViewRect;
+@property (nonatomic, strong, readonly) NSMutableArray * picsRect;
 
 /*
  被转发的微博信息

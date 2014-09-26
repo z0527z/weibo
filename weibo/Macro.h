@@ -45,10 +45,10 @@
 // 昵称
 #define kScreenNameFont [UIFont systemFontOfSize:17.0]
 #define kScreenNameColor [UIColor blackColor]
-#define kMBScreenNameColor [UIColor colorWithRed:244 green:103 blue:8 alpha:1]
+#define kMBScreenNameColor [UIColor colorWithRed:244/255.0 green:103/255.0 blue:8/255.0 alpha:1]
 
 // 会员
-#define kMbIconWidth    14
+#define kMbIconWidth    28
 #define kMbIconHeight   kMbIconWidth
 
 // 创建时间
@@ -59,6 +59,10 @@
 
 // 正文
 #define kTextFont       [UIFont systemFontOfSize:15.0]
+
+// 微博配图
+#define kImageCount     9
+#define kPlaceHolderImage   [UIImage imageNamed:@"avatar_default.png"]
 
 // 被转微博的昵称
 #define kRetweetedScreenNameFont    [UIFont systemFontOfSize:14.0]

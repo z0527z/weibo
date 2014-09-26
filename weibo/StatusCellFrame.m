@@ -59,23 +59,28 @@
     
     _text = (CGRect){{textX, textY}, textSize};
     
+    float imageTotalHeight = CGRectGetMaxY(_text) + kCellPadding;
     if (status.picUrls) {
+        _picsRect = [NSMutableArray array];
         CGFloat picX = iconX;
         CGFloat picY = CGRectGetMaxY(_text) + kCellPadding;
-        UIImage * placeHolderImage = [UIImage imageNamed:@"avatar_default.png"];
+        UIImage * placeHolderImage = kPlaceHolderImage;
+        float width = placeHolderImage.size.width;
+        float height = placeHolderImage.size.height;
+        int count = status.picUrls.count;
         
-//        for (int i = 0; i < status.picUrls.count; i ++) {
-//            UIImageView * imageView = [[UIImageView alloc]init];
-//            NSURL * imageUrl = [NSURL URLWithString:status.picUrls[i]];
-//            [imageView sd_setImageWithURL:imageUrl placeholderImage:placeHolderImage options:SDWebImageLowPriority | SDWebImageRetryFailed];
-//            
-//            // 照片以九宫格的形式排列
-//            CGFloat X = (i % 3) * placeHolderImage.size.width + picX;
-//            CGFloat Y = (i / 3) * placeHolderImage.size.height + picY;
-//            imageView.frame = (CGRect){{X, Y}, placeHolderImage.size};
-//        }
-
-        _pic = CGRectMake(picX, picY, placeHolderImage.size.width, placeHolderImage.size.height);
+        int X = 0, Y = 0;
+        for (int i = 0; i < count; i ++) {
+            X = (i % 3) * width + (i % 3) * kCellPadding;
+            Y = (i / 3) * height + (i / 3) * kCellPadding;
+            
+            CGRect rect = CGRectMake(X, Y, width, height);
+            
+            [_picsRect addObject:NSStringFromCGRect(rect)];
+        }
+        float imageHeight = ((count + 2) / 3) * height + ((count + 2)/ 3 - 1) * kCellPadding;
+        _imageBackViewRect = CGRectMake(picX, picY, constrainedSize.width, imageHeight);
+        imageTotalHeight += imageHeight;
     }
     
     /*
@@ -109,7 +114,7 @@
         if (status.retweetedStatus.picUrls) {
             CGFloat retweetedPicX = retweetedScreenNameX;
             CGFloat retweetedPicY = CGRectGetMaxY(_retweetedText) + kCellPadding;
-            UIImage * placeHolderImage = [UIImage imageNamed:@"avatar_default.png"];
+            UIImage * placeHolderImage = kPlaceHolderImage;
             
             CGFloat width = placeHolderImage.size.width;
             CGFloat height = placeHolderImage.size.height;
@@ -128,7 +133,7 @@
     
     _cellHeight = CGRectGetMaxY(_text);
     if (status.picUrls) {
-        _cellHeight = CGRectGetMaxY(_pic);
+        _cellHeight = CGRectGetMaxY(_imageBackViewRect);
     }
     if (status.retweetedStatus) {
         _cellHeight = CGRectGetMaxY(_retweet);

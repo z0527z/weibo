@@ -32,7 +32,8 @@
     UILabel * _text;
     
     // 微博配图
-    UIImageView * _pic;
+    UIView * _imageBackView;
+    NSMutableArray * _pictures;
     
     /*
      被转发的微博信息
@@ -107,8 +108,16 @@
     [self addSubview:_text];
     
     // 微博配图
-    _pic = [[UIImageView alloc] init];
-    [self addSubview:_pic];
+    _imageBackView = [[UIView alloc] init];
+    [self addSubview:_imageBackView];
+    
+    _pictures = [NSMutableArray array];
+    for (int i = 0; i < kImageCount; i ++) {
+        UIImageView * imageView = [[UIImageView alloc] init];
+        [_imageBackView addSubview:imageView];
+        [_pictures addObject:imageView];
+    }
+    
 }
 
 #pragma mark - 添加被转发微博控件
@@ -146,7 +155,7 @@
     _statusCellFrame = statusCellFrame;
     
     // 设置头像
-    UIImage * userPlaceHolderImage = [UIImage imageNamed:@"avatar_default.png"];
+    UIImage * userPlaceHolderImage = kPlaceHolderImage;
     NSURL * url = [NSURL URLWithString:statusCellFrame.status.user.profileImageUrl];
 #warning 这里也必须设置frame, 这才真正设置到cell上
     _icon.frame = statusCellFrame.icon;
@@ -159,14 +168,36 @@
     // 会员头像
     Status * status = statusCellFrame.status;
     User * user = status.user;
-    _mbIcon.image = [UIImage imageNamed:@"common_icon_membership.png"];
+    
     if (user.mbType == MBTypeNone) {
-        _mbIcon.hidden = YES;
-        _screenName.textColor = kScreenNameColor;
+        if (user.isVerified) {
+            _mbIcon.hidden = NO;
+            if (user.verifiedType == VerifiedTypePersonal) {
+                _mbIcon.image = [UIImage imageNamed:@"avatar_vip.png"];
+            }
+            else if (user.verifiedType == VerifiedTypeCompany) {
+                _mbIcon.image = [UIImage imageNamed:@"avatar_enterprise_vip.png"];
+            }
+            _screenName.textColor = kMBScreenNameColor;
+            _mbIcon.frame = statusCellFrame.mbIcon;
+        }
+        else {
+            if (user.verifiedType == VerifiedTypeExpert) {
+                _mbIcon.image = [UIImage imageNamed:@"avatar_grassroot.png"];
+                _mbIcon.hidden = NO;
+                _mbIcon.frame = statusCellFrame.mbIcon;
+            }
+            else {
+                _mbIcon.hidden = YES;
+                _screenName.textColor = kScreenNameColor;
+            }
+        }
     }
     else {
         _mbIcon.hidden = NO;
         _screenName.textColor = kMBScreenNameColor;
+        _mbIcon.image = [UIImage imageNamed:@"common_icon_membership.png"];
+        _mbIcon.frame = statusCellFrame.mbIcon;
     }
 
     
@@ -183,16 +214,32 @@
     // 带图片的微博
     if (status.picUrls) {
         _retweet.hidden = YES;
-        _pic.hidden = NO;
-        url = [NSURL URLWithString:status.picUrls[0]];
-        [_pic sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"avatar_default.png"]];
-        _pic.frame = statusCellFrame.pic;
+        _imageBackView.hidden = NO;
+        
+        int count = status.picUrls.count;
+        UIImage * placeHolderImage = kPlaceHolderImage;
+        for (int i = 0; i < kImageCount; i ++) {
+            UIImageView * imageView = _pictures[i];
+            if (i >= count) {
+                imageView.hidden = YES;
+            }
+            else {
+                imageView.hidden = NO;
+                
+                url = [NSURL URLWithString:status.picUrls[i]];
+                [imageView sd_setImageWithURL:url placeholderImage: placeHolderImage];
+                CGRect rect = CGRectFromString(statusCellFrame.picsRect[i]);
+                imageView.frame = rect;
+                
+            }
+        }
+        _imageBackView.frame = statusCellFrame.imageBackViewRect;
     }
     
     // 带转发的微博
     else if (status.retweetedStatus) {
         _retweet.hidden = NO;
-        _pic.hidden = YES;
+        _imageBackView.hidden = YES;
         UIImage * image = [UIImage imageNamed:@"timeline_retweet_background.png"];
         _retweet.image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height * 0.5, image.size.width * 0.9, image.size.height * 0.5, image.size.width * 0.1)];
         
@@ -208,9 +255,13 @@
         
         // 被转微博配图(如果有的话)
         if (status.retweetedStatus.picUrls) {
+            _retweetedPic.hidden = NO;
             url = [NSURL URLWithString:status.retweetedStatus.picUrls[0]];
-            [_retweetedPic sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"avatar_default.png"]];
+            [_retweetedPic sd_setImageWithURL:url placeholderImage:kPlaceHolderImage];
             _retweetedPic.frame = statusCellFrame.retweetedPic;
+        }
+        else {
+            _retweetedPic.hidden = YES;
         }
         
         
@@ -218,7 +269,7 @@
     // 纯文本微博
     else {
         _retweet.hidden = YES;
-        _pic.hidden = YES;
+        _imageBackView.hidden = YES;
     }
     
 }
