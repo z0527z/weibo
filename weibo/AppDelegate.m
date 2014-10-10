@@ -14,7 +14,7 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[WeiboSDK enableDebugMode:YES];
+    // setting bundle需要和userDefaults联合使用
     [WeiboSDK registerApp:kWeiboAppKey];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

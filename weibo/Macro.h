@@ -48,7 +48,7 @@
 #define kMBScreenNameColor [UIColor colorWithRed:244/255.0 green:103/255.0 blue:8/255.0 alpha:1]
 
 // 会员
-#define kMbIconWidth    28
+#define kMbIconWidth    14
 #define kMbIconHeight   kMbIconWidth
 
 // 创建时间

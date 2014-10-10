@@ -134,6 +134,7 @@
 		228FA5561995A1CB00AFED25 /* UIImage+resizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 228FA5551995A1CB00AFED25 /* UIImage+resizeImage.m */; };
 		229A19471996F36600E3F108 /* SendWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 229A19461996F36600E3F108 /* SendWeiboViewController.m */; };
 		22B18A27199B184C00AB2FFD /* PlainTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 22B18A26199B184C00AB2FFD /* PlainTableDataSource.m */; };
+		22CF06BE19E7D10B0001A988 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 22CF06BD19E7D10B0001A988 /* Settings.bundle */; };
 		22D0B6591992098E000742F8 /* Dock.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B6581992098E000742F8 /* Dock.m */; };
 		22D0B65C19920A40000742F8 /* DockItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65B19920A40000742F8 /* DockItem.m */; };
 		22D0B65F199211D8000742F8 /* NSString+append.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D0B65E199211D8000742F8 /* NSString+append.m */; };
@@ -373,6 +374,7 @@
 		229A19461996F36600E3F108 /* SendWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendWeiboViewController.m; sourceTree = "<group>"; };
 		22B18A25199B184C00AB2FFD /* PlainTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableDataSource.h; sourceTree = "<group>"; };
 		22B18A26199B184C00AB2FFD /* PlainTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainTableDataSource.m; sourceTree = "<group>"; };
+		22CF06BD19E7D10B0001A988 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		22D0B6571992098E000742F8 /* Dock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dock.h; sourceTree = "<group>"; };
 		22D0B6581992098E000742F8 /* Dock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dock.m; sourceTree = "<group>"; };
 		22D0B65A19920A40000742F8 /* DockItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockItem.h; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 				221BD032198F856C0004350E /* InfoPlist.strings */,
 				221BD035198F856C0004350E /* main.m */,
 				221BD037198F856C0004350E /* weibo-Prefix.pch */,
+				22CF06BD19E7D10B0001A988 /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1045,6 +1048,7 @@
 				221BD0C8198F8C5A0004350E /* tabbar_home@2x.png in Resources */,
 				22F216671994BB4400D235B4 /* navigationbar_compose_highlighted.png in Resources */,
 				22F216561994BB4400D235B4 /* common_icon_arrow@2x.png in Resources */,
+				22CF06BE19E7D10B0001A988 /* Settings.bundle in Resources */,
 				221BD0CC198F8C5A0004350E /* tabbar_message_center@2x.png in Resources */,
 				221BD0C5198F8C5A0004350E /* tabbar_discover_selected.png in Resources */,
 				22F2164A1994BB4400D235B4 /* common_card_bottom_background@2x.png in Resources */,

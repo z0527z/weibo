@@ -68,7 +68,6 @@
 {
     // IOS7下状态栏的显示方案已经改变
     CGRect rect = self.view.bounds;
-    //NSLog(@"main-->bounds:%@", NSStringFromCGRect(self.view.bounds));
     
     _dock = [[Dock alloc]initWithFrame:CGRectMake(0, rect.size.height - kDockHeight, rect.size.width, kDockHeight)];
     [self.view addSubview:_dock];
