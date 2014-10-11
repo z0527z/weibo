@@ -1,4 +1,4 @@
-weibo
+新浪微博个人版
 =====
 
-add weibo project for fun
+模仿新浪微博的练手项目
